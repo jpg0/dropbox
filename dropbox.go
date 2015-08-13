@@ -254,6 +254,11 @@ func (db *Dropbox) SetAppInfo(clientid, clientsecret string) error {
 	return nil
 }
 
+//SetOAuth2Config replaces the current oauth2.Config with an user provided one
+func (db *Dropbox) SetOAuth2Config(config *oauth2.Config) {
+	db.config = config
+}
+
 // SetAccessToken sets access token to avoid calling Auth method.
 func (db *Dropbox) SetAccessToken(accesstoken string) {
 	db.token = &oauth2.Token{AccessToken: accesstoken}
