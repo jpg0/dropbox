@@ -143,7 +143,7 @@ func TestAccountInfo(t *testing.T) {
 		},
 	}
 
-	if received, err = db.GetAccountInfo(); err != nil {
+	if received, err = db.AccountInfo(); err != nil {
 		t.Errorf("API error: %s", err)
 	} else if !reflect.DeepEqual(expected, *received) {
 		t.Errorf("got %#v expected %#v", *received, expected)
