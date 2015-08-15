@@ -52,6 +52,7 @@ type Account struct {
 	DisplayName  string `json:"display_name,omitempty"`  // User name.
 	UID          int    `json:"uid,omitempty"`           // User account ID.
 	Country      string `json:"country,omitempty"`       // Country ISO code.
+	Email        string `json:"email,omitempty"`         // User E-Mail
 	QuotaInfo    struct {
 		Shared int64 `json:"shared,omitempty"` // Quota for shared files.
 		Quota  int64 `json:"quota,omitempty"`  // Quota in bytes.
@@ -688,8 +689,8 @@ func (db *Dropbox) doRequest(method, path string, params *url.Values, receiver i
 	return err
 }
 
-// GetAccountInfo gets account information for the user currently authenticated.
-func (db *Dropbox) GetAccountInfo() (*Account, error) {
+// AccountInfo gets account information for the user currently authenticated.
+func (db *Dropbox) AccountInfo() (*Account, error) {
 	var rv Account
 
 	err := db.doRequest("GET", "account/info", nil, &rv)
