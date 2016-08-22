@@ -288,6 +288,12 @@ func (db *Dropbox) Auth() error {
 	return db.AuthCode(code)
 }
 
+// AuthURL returns the URL which must be visited to authorise this application.
+// Once authorised it will redirect to the URL set by SetRedirectURL
+func (db *Dropbox) AuthURL() string {
+	return db.config.AuthCodeURL("")
+}
+
 // AuthCode gets the token associated with the given code.
 func (db *Dropbox) AuthCode(code string) error {
 	t, err := db.config.Exchange(oauth2.NoContext, code)
